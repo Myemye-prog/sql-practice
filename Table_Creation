@@ -1,0 +1,69 @@
+-- 1. CREATE TABLES
+
+CREATE TABLE locations (
+    location_id INT PRIMARY KEY,
+    city VARCHAR(50)
+);
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50),
+    location_id INT,
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
+);
+
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    salary INT,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+
+-- 2. INSERT DATA
+
+INSERT INTO locations (location_id, city)
+VALUES
+(1, 'Chennai'),
+(2, 'Mumbai'),
+(3, 'Bangalore');
+
+
+INSERT INTO departments (department_id, department_name, location_id)
+VALUES
+(101, 'IT', 1),
+(102, 'HR', 2),
+(103, 'Finance', 3),
+(104, 'Marketing', 1);
+
+
+INSERT INTO employees (employee_id, name, salary, department_id)
+VALUES
+(1, 'Rahul', 30000, 101),
+(2, 'Priya', 45000, 102),
+(3, 'Amit', 50000, 101),
+(4, 'Sneha', 60000, 103),
+(5, 'Ravi', 35000, 102);
+
+
+-- 3. VIEW TABLES
+
+-- Show all table names
+SELECT name
+FROM sys.tables;
+
+
+-- Show all employees
+SELECT *
+FROM employees;
+
+
+-- Show all departments
+SELECT *
+FROM departments;
+
+
+-- Show all locations
+SELECT *
+FROM locations;
